@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ article.name }}</h1>
+    <div>{{ article.body }}</div>
+    <div id="form">
+        {% block form %}{% endblock %}
+    </div>
+{% endblock %}
