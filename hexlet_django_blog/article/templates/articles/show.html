@@ -1,9 +1,20 @@
 {% extends "base.html" %}
 
+
 {% block content %}
     <h1>{{ article.name }}</h1>
     <div>{{ article.body }}</div>
-    <div id="form">
-        {% block form %}{% endblock %}
-    </div>
+        <h1>Comments:</h1>
+        {% if comments %}
+            {% for comment in comments %}
+                <h2>{{ comment.content }}</a></h2>
+            {% endfor %}
+        {% endif %}
+        <form action="{% url 'article_id' article.id %}" method="post">
+            {% csrf_token %}
+            <table border="1">
+            {{ form }}
+            </table>
+            <input type="submit" value="save comment">
+        </form>
 {% endblock %}
