@@ -1,6 +1,15 @@
 {% extends "base.html" %}
 
+
 {% block content %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <p>{{ message }}</p>
+    {% endfor %}
+</ul>
+{% endif %}
+<a href="{% url 'article_create' %}"><h2>ADD NEW POST</h2></a>
     <h1>Список статей</h1>
     {% for article in articles %}
         <h2><a href="{% url 'article_id' article.id %}">{{ article.name }}</a></h2>

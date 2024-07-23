@@ -12,8 +12,8 @@ class Article(models.Model):
 
 
 class ArticleComment(models.Model):
-    article = models.ForeignKey(Article, related_name='comments', on_delete=models.PROTECT)
-    content = models.CharField('to comment', max_length=100)
+    article = models.ForeignKey(Article, related_name='comments', on_delete=models.CASCADE)
+    content = models.CharField('add comment', max_length=100)
 
     def __str__(self):
         return self.content

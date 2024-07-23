@@ -2,12 +2,24 @@
 
 
 {% block content %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <p>{{ message }}</p>
+    {% endfor %}
+</ul>
+{% endif %}
     <h1>{{ article.name }}</h1>
-    <div>{{ article.body }}</div>
-        <h1>Comments:</h1>
+    <h2>{{ article.body }}</h2><hr>
+    <a href="{% url 'article_update' article.id %}">Edit</a>
+    <form action="{% url 'articles_delete' article.id %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Удалить">
+    </form>    
+        <p>Comments:<p>
         {% if comments %}
             {% for comment in comments %}
-                <h2>{{ comment.content }}</a></h2>
+                <p>{{ comment.content }}</p>
             {% endfor %}
         {% endif %}
         <form action="{% url 'article_id' article.id %}" method="post">
